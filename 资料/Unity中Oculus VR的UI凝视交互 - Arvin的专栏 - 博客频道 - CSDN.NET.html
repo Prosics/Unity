@@ -1,0 +1,1257 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>  
+
+            <link rel="canonical" href="http://blog.csdn.net/qq_21397217/article/details/72723917"/> 
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>Unity中Oculus VR的UI凝视交互 - Arvin的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Oculus VR中的UI凝视交互根据译文《VR中的UI凝视交互》进行的整理和补充，只有实现步骤。 原文链接：  《VR中的UI凝视交互》   http://gad.qq.com/article/detail/7173433插件包下载地址：  OculusSampleFramework.unitypackage   https://developer.oculus.com/downloa" />
+
+    <meta name="keywords" content="unity,oculus,vr" />
+
+   
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+                      <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/dark1/css/style.css?v=1.1" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/qq_21397217/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue_black.css" />
+ 
+
+
+
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+     
+         <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72"  data-mtp="62" data-order="40" data-con="ad_content_2072" >
+                     <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer"  type="text/javascript"></script>
+                <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"></div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/qq_21397217">Arvin的专栏</a></h2>
+            <h3>未忘初心，我来追寻最初的梦想了！</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/qq_21397217?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/qq_21397217?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/qq_21397217/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "qq_21397217";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/qq_21397217";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://bss.csdn.net/cview/reg/?project_id=3560&identy_id=1855">
+<font color=red><strong>福利 | 百度 AI 开发者大会免费门票领取</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/73840694">
+<font color=blue><strong>CSDN日报20170628——《实习，背后的选择？》</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp
+
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/426?ref=blog&loc=r0">
+<font color=red><strong>【直播】探究Linux的总线、设备、驱动模型！</strong></font></a>
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Unity%e4%b8%adOculus+VR%e7%9a%84UI%e5%87%9d%e8%a7%86%e4%ba%a4%e4%ba%92&u=http://blog.csdn.net/qq_21397217/article/details/72723917"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+    <h1>
+        <span class="link_title"><a href="/qq_21397217/article/details/72723917">
+        Unity中Oculus VR的UI凝视交互        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href='http://www.csdn.net/tag/unity' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">unity</a><a href='http://www.csdn.net/tag/oculus' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">oculus</a><a href='http://www.csdn.net/tag/vr' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">vr</a><a href='http://www.csdn.net/tag/3D-UI' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">3D-UI</a><a href='http://www.csdn.net/tag/%e5%87%9d%e8%a7%86' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">凝视</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2017-05-25 11:34</span>
+            <span class="link_view" title="阅读次数">217人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('Unity%e4%b8%adOculus+VR%e7%9a%84UI%e5%87%9d%e8%a7%86%e4%ba%a4%e4%ba%92','72723917');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(72723917,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('6902472','qq_21397217','top','72723917');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">Unity<em>（3）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/qq_21397217/article/category/6902472"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6902472">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod=popu_307  data-dsm = "post" >
+        <div class="markdown_views"><h2 id="unity中oculus-vr的ui凝视交互">Unity中Oculus VR的UI凝视交互</h2>
+
+<p>根据译文《VR中的UI凝视交互》进行的整理和补充，只有实现步骤。 <br>
+原文链接：</p>
+
+<blockquote>
+  <p>《VR中的UI凝视交互》 <br>
+  <a href="http://gad.qq.com/article/detail/7173433" target="_blank">http://gad.qq.com/article/detail/7173433</a></p>
+</blockquote>
+
+<p>插件包下载地址：</p>
+
+<blockquote>
+  <p>OculusSampleFramework.unitypackage <br>
+  <a href="https://developer.oculus.com/downloads/package/oculus-sample-framework-for-unity-5-project/" target="_blank">https://developer.oculus.com/downloads/package/oculus-sample-framework-for-unity-5-project/</a></p>
+</blockquote>
+
+
+
+<h3 id="前期配置">前期配置</h3>
+
+<ol>
+<li><p>导入Oculus插件包<code>OculusSampleFramework.unitypackage</code></p></li>
+<li><p>若使用Unity 5.1或更新的版本，确保在<strong>Edit -&gt; Project Settings -&gt; Player : Other Setting -&gt; Rendering</strong>设置里勾选<strong>Virtual Reality Supported</strong>。</p></li>
+</ol>
+
+
+
+<h3 id="实现过程">实现过程</h3>
+
+<ul>
+<li><p>替换相机</p>
+
+<ol><li>删除场景中的Camera</li>
+<li>添加<code>OVR/Prefabs/OVRCameraRig</code>预置体到场景中作为相机</li>
+<li>将相机调整到合适的位置</li></ol></li>
+<li><p>更改输入模块</p>
+
+<ol><li>选择Hierarchy中的<code>EventSystem</code>对象</li>
+<li>移除用于处理常规鼠标输入的<code>StandaloneInputModule</code>组件</li>
+<li>添加<code>OVRInspector/Scripts/OVRInputModule</code>脚本</li>
+<li>把<code>OVRCameraRig</code>对象下的<code>CentreEyeAnchor</code>拖到<code>OVRInputModule</code>的<code>RayTransform</code>属性上，使射线始终从双眼中间位置发出</li>
+<li><code>OVRInputModule</code>中的<code>JoyPadClickButton</code>和<code>GazeClickKey</code>分别用于设置Touch手柄和键盘上操作UI的按键</li></ol></li>
+<li><p>添加凝视指针</p>
+
+<ol><li>添加<code>OVRInspector/Resources/Prefabs/GazePointerRing</code>预置体到场景中来指示当前凝视的位置</li>
+<li>预置体上除了<code>OVRGazePointer</code>脚本还有一个与粒子特效有关的脚本，如不需要可以删除</li>
+<li>把<code>OVRCameraRig</code>对象下的<code>CentreEyeAnchor</code>拖放到<code>OVRGazePointer</code>脚本的<code>RayTransform</code>属性上，使指针跟随射线</li></ol></li>
+<li><p>设置Canvas</p>
+
+<ol><li>将需要凝视操作的Canvas的<code>Render Mode</code>属性设置为<code>World Space</code></li>
+<li>将Canvas中的<code>EventCamera</code>设置为<code>OVRCameraRig</code>下的<code>CenterEyeAnchor</code></li>
+<li>移除Canvas绑定的用于监测鼠标与GUI元素交互的<code>GraphicRaycaster</code>组件</li>
+<li>添加用于处理射线的<code>OVRInspector/Scripts/OVRRaycaster</code>脚本</li>
+<li>在<code>OVRRaycaster</code>组件中，将<code>Blocking Objects</code>属性设为<code>All</code>，使凝视行为可以锁定场景中的其他可交互对象</li></ol></li>
+<li><p>更改指针移动方式 <br>
+若希望通过其他输入设备移动指针，则进行此步，以右手Touch控制器为例。</p>
+
+<ol><li>选择<code>EventSystem</code>对象，把<code>OVRInputModule</code>的<code>RayTransform</code>属性改为<code>OVRCameraRig</code>对象下的<code>RightHandAnchor</code>，使射线从右手的Touch控制器发出</li>
+<li>选择<code>GazePointerRing</code>对象，将<code>OVRGazePointer</code>脚本的<code>RayTransform</code>属性改为<code>OVRCameraRig</code>对象下的<code>RightHandAnchor</code>，使指针跟随射线</li></ol></li>
+<li><p>添加世界坐标下的鼠标 <br>
+若需要为VR场景提供与凝视一起存在的鼠标操作UI的功能，则进行此步操作。</p>
+
+<ol><li>将<code>OVRInspector/Resources/Prefabs/CanvasPointer</code>预置体添加为Canvas对象的子对象</li>
+<li>将Canvas对象的<code>OVRRaycaster</code>脚本中的<code>Pointer</code>属性设置为新添加的<code>CanvasPointer</code>对象</li>
+<li>为Canvas对象添加<code>OVRInspector/Scripts/OVRMousePointer</code>脚本</li></ol></li>
+</ul></div>
+        <script  type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li/>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.15-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" ArticleId="72723917" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/qq_21397217/article/details/72625298';">上一篇</span><a href="/qq_21397217/article/details/72625298" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">寻找可用的Oculus HOSTS代理的方法（解决OVR5322546错误）</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article"   >
+                    <h4></h4>
+                    <div class="similar_c"style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36" >                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/qq_26270779/article/details/69257862" title="HoloLens 开发总结" strategy="BlogCommendFromCsdn" target="_blank">HoloLens 开发总结</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://newday.iteye.com/blog/2258066" title="Unity3D与Android SDK交互" strategy="BlogCommendFromCsdn" target="_blank">Unity3D与Android SDK交互</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/huayuQA/article/details/53300432" title="VR系列——Oculus Audio sdk文档：四、传统Oculus声场定位技术的统一集成指南（3）——安装到Unity" strategy="BlogCommendFromCsdn" target="_blank">VR系列——Oculus Audio sdk文档：四、传统Oculus声场定位技术的统一集成指南（3）——安装到Unity</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://modabobo.iteye.com/blog/2181077" title="[Unity3d]谈谈UI分辨率适配" strategy="BlogCommendFromCsdn" target="_blank">[Unity3d]谈谈UI分辨率适配</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://tecna.iteye.com/blog/1178767" title="unity3D与网页的交互---做项目的一点总结 " strategy="BlogCommendFromCsdn" target="_blank">unity3D与网页的交互---做项目的一点总结 </a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sgnyyy/article/details/53783460" title="Unity3d 多线程编程 线程和主线程（UI）交互实现问题" strategy="BlogCommendFromCsdn" target="_blank">Unity3d 多线程编程 线程和主线程（UI）交互实现问题</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://googlers.iteye.com/blog/1320813" title="Windows Phone 7 UI设计和交互规范随笔（2）" strategy="BlogCommendFromCsdn" target="_blank">Windows Phone 7 UI设计和交互规范随笔（2）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/huayuQA/article/details/73743757" title="VR系列——Oculus Rift 开发者指南：七、SDK样品和手柄的使用及低级传感器详述" strategy="BlogCommendFromCsdn" target="_blank">VR系列——Oculus Rift 开发者指南：七、SDK样品和手柄的使用及低级传感器详述</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://dsqiu.iteye.com/blog/2028503" title="Unity多线程（Thread）和主线程（MainThread）交互使用类——Loom工具分享" strategy="BlogCommendFromCsdn" target="_blank">Unity多线程（Thread）和主线程（MainThread）交互使用类——Loom工具分享</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sherlockchang/article/details/51336901" title="【翻译】 Unity3D VR 教程：3.VR中的交互" strategy="BlogCommendFromCsdn" target="_blank">【翻译】 Unity3D VR 教程：3.VR中的交互</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+     <div>
+           
+
+       
+                           
+            <!-- 广告位：PC端-博客内容页-banner1-960*90 --> 
+            <script> 
+                (function() { 
+                    var s = "_" + Math.random().toString(36).slice(2); 
+                    document.write('<div id="' + s + '"></div>'); 
+                    (window.slotbydup=window.slotbydup || []).push({ 
+                        id: '4228013', 
+                        container: s, 
+                        size: '0,0', 
+                        display: 'inlay-fix' 
+                    }); 
+                })(); 
+            </script>
+    </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/qq_21397217/svc/GetSuggestContent/72723917",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+ 
+
+ 
+
+<dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"  > 
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+    
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/detail/422?ref=blog&amp;loc=r1" title="深度学习基础与TensorFlow实践" strategy="undefined" target="_blank">深度学习基础与TensorFlow实践</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/series_detail/43?ref=blog&amp;loc=r1" title="【在线峰会】前端开发重点难点技术剖析与创新实践" strategy="undefined" target="_blank">【在线峰会】前端开发重点难点技术剖析与创新实践</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/series_detail/42?ref=blog&amp;loc=r1" title="【在线峰会】一天掌握物联网全栈开发之道" strategy="undefined" target="_blank">【在线峰会】一天掌握物联网全栈开发之道</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/series_detail/41?ref=blog&amp;loc=r1" title="【在线峰会】如何高质高效的进行Android技术开发" strategy="undefined" target="_blank">【在线峰会】如何高质高效的进行Android技术开发</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/detail/404?ref=blog&amp;loc=r1" title="机器学习40天精英计划" strategy="undefined" target="_blank">机器学习40天精英计划</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/huiyiCourse/detail/402?ref=blog&amp;loc=r1" title="Python数据挖掘与分析速成班" strategy="undefined" target="_blank">Python数据挖掘与分析速成班</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/course/detail/3011?ref=blog&amp;loc=r1" title="微信小程序开发实战" strategy="undefined" target="_blank">微信小程序开发实战</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/course/detail/1968?ref=blog&amp;loc=r1" title="JFinal极速开发企业实战" strategy="undefined" target="_blank">JFinal极速开发企业实战</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/combo/detail/23?ref=blog&amp;loc=r1" title="备战2017软考 系统集成项目管理工程师 学习套餐" strategy="undefined" target="_blank">备战2017软考 系统集成项目管理工程师 学习套餐</a>
+                </dd>
+                <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                     <a href="http://edu.csdn.net/course/detail/3338?ref=blog&amp;loc=r1" title="Python大型网络爬虫项目开发实战（全套）" strategy="undefined" target="_blank">Python大型网络爬虫项目开发实战（全套）</a>
+                </dd>
+
+    
+
+    
+   
+</dl>
+
+
+
+
+
+    <div id="ad_cen">        
+                <div>
+                                    <div class="tracking-ad" data-view="true" data-mod="ad_popu_199" data-mtp="43" data-order="114" data-con="ad_content_1843" style="width: 960px; height: 90px;">
+                                             <script type="text/javascript">
+                                                 /*博客内容页下方Banner2-960*90，创建于,2016-11-28*/
+                                                 var cpro_id = "u2831143";
+                                            </script>
+                                            <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+                                   </div>
+                    </div>
+    </div>  
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '72723917';
+    var commentscount = 0;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Unity中Oculus VR的UI凝视交互';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/qq_21397217" target="_blank">
+    <img src="http://avatar.csdn.net/3/8/6/1_qq_21397217.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/qq_21397217" class="user_name" target="_blank">qq_21397217</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=qq_21397217','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>31459次</span></li>
+    <li>积分：<span>690</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog3.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：690 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>37篇</span></li>
+    <li>转载：<span>1篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>9条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank"  data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/qq_21397217/article/category/6902472" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Unity</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/3117799" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux</a><span>(22)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6188039" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C++</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6154161" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Android</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6268968" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Java</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6885896" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C#</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6418549" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Python3</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6154162" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">MySQL</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6268995" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Git</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6395381" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">软件架构</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6406836" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Docker</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/qq_21397217/article/category/6929468" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Golang</a><span>(0)</span>
+                </li>
+</ul>
+</div><div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/qq_21397217/article/details/52447263" title="Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法">Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法</a><span>(7423)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52396861" title="虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法">虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法</a><span>(4302)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52703920" title="Android Studio添加volley以及volley的简单用法">Android Studio添加volley以及volley的简单用法</a><span>(2987)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52460792" title="Sublime Text和Atom编辑器的列编辑模式">Sublime Text和Atom编辑器的列编辑模式</a><span>(2425)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52439111" title="解决Linux和Windows双系统时间相差8小时的问题">解决Linux和Windows双系统时间相差8小时的问题</a><span>(2043)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/51656770" title="Java易错知识点笔记">Java易错知识点笔记</a><span>(1511)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/65630730" title="解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a><span>(1416)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/51656754" title="C++易错知识点整理">C++易错知识点整理</a><span>(1332)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/53054329" title="Windows 10无法设置静态IP的解决办法">Windows 10无法设置静态IP的解决办法</a><span>(1015)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52438501" title="解决Ubuntu 16.04中gvfsd-smb-browse占用CPU 100%的问题">解决Ubuntu 16.04中gvfsd-smb-browse占用CPU 100%的问题</a><span>(835)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/qq_21397217/article/details/65630730" title="解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a><span>(4)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52396861" title="虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法">虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法</a><span>(2)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52447263" title="Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法">Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法</a><span>(2)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/51656754" title="C++易错知识点整理">C++易错知识点整理</a><span>(1)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52396435" title="Linux修改主机名">Linux修改主机名</a><span>(0)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/72723917" title="Unity中Oculus VR的UI凝视交互">Unity中Oculus VR的UI凝视交互</a><span>(0)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52396273" title="Android Studio使用第三方jar包时出现DuplicateFileException错误的解决办法">Android Studio使用第三方jar包时出现DuplicateFileException错误的解决办法</a><span>(0)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/52396241" title="Android Studio出现Gradle DSL method not found:&#39;android()&#39;错误的解决办法">Android Studio出现Gradle DSL method not found:&#39;android()&#39;错误的解决办法</a><span>(0)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/51656859" title="Git常用操作">Git常用操作</a><span>(0)</span>
+</li>
+<li>
+<a href="/qq_21397217/article/details/51656770" title="Java易错知识点笔记">Java易错知识点笔记</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/qq_21397217/article/details/65630730#comments">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a>
+    <p style="margin:0px;"><a href="/qq_21397217" class="user_name">qq_21397217</a>:
+@qq_29108561:我也不知道额。。好久没弄Android了 =_=||
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/65630730#comments">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a>
+    <p style="margin:0px;"><a href="/qq_29108561" class="user_name">qq_29108561</a>:
+参照博主的方法。问题还是没有解决。本地文件确实都有。还新建工程拷过来。错误问题依旧。心痛的无法呼吸
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52396861#comments">虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法</a>
+    <p style="margin:0px;"><a href="/qq_21397217" class="user_name">qq_21397217</a>:
+@u011122367:你装的什么系统就写什么。例如装的LinuxMint，那就写linuxmint...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52396861#comments">虚拟机开机时出现Press ESC in 5 seconds to skip startup.nsh, any other key to continue问题的解决办法</a>
+    <p style="margin:0px;"><a href="/u011122367" class="user_name">u011122367</a>:
+请问\EFI\\grubx64.efi其中的系统名称在哪看
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52396861#comments">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a>
+    <p style="margin:0px;"><a href="/qq_21397217" class="user_name">qq_21397217</a>:
+@dengfengdeling:多谢指正，已经更正了。之前这里是我写的容易让人误解了，原来是说侧边栏...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52396861#comments">解决Error:Could not determine the class-path for interface com.android.builder.model.AndroidProject.</a>
+    <p style="margin:0px;"><a href="/dengfengdeling" class="user_name">dengfengdeling</a>:
+按照博主的方法确实解决了问题，但是需要指出一个小问题：Gradle Scripts不是在Projec...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52447263#comments">Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法</a>
+    <p style="margin:0px;"><a href="/qq_21397217" class="user_name">qq_21397217</a>:
+@WincolorY:抱歉，才看到你的问题，过了这么久你应该已经解决了。我没用过搜狗，也不太清楚这种...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/52447263#comments">Ubuntu安装Fcitx以及Fcitx输入中文不显示候选词框的解决办法</a>
+    <p style="margin:0px;"><a href="/WincolorY" class="user_name">WincolorY</a>:
+大神, 我安装了sogou输入法, 本来用得好好的, 后来突然不能显示中文输入框了, 在网上搜了很久...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/qq_21397217/article/details/51656754#comments">C++易错知识点整理</a>
+    <p style="margin:0px;"><a href="/qq_26728227" class="user_name">qq_26728227</a>:
+给力
+    </p>
+    </li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/qq_21397217/article/month/2017/05">2017年05月</a><span>(7)</span></li><li><a href="/qq_21397217/article/month/2017/04">2017年04月</a><span>(2)</span></li><li><a href="/qq_21397217/article/month/2017/03">2017年03月</a><span>(2)</span></li><li><a href="/qq_21397217/article/month/2016/11">2016年11月</a><span>(1)</span></li><li><a href="/qq_21397217/article/month/2016/09">2016年09月</a><span>(22)</span></li><li><a href="/qq_21397217/article/month/2016/06">2016年06月</a><span>(4)</span></li><li><a href="/qq_21397217/article/month/2016/04">2016年04月</a><span>(1)</span></li>
+</div>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/73840694" target="_blank">* CSDN日报20170628——《实习，背后的选择？》</a></li>
+<li><a href="http://blog.csdn.net/pistolove/article/details/73610588" 
+target="_blank">* 【Java高级开发工程师】近一个月的面试总结</a></li>
+<li><a href="http://blog.csdn.net/reboot123/article/details/73266776"target="_blank">* 一个文科生的工程师之路</a></li>
+<li><a href="http://blog.csdn.net/lqw_student/article/details/73646768" 
+target="_blank">* JavaWeb 与 MySQL 人鬼情未了</a></li>
+<li><a href="http://blog.csdn.net/totond/article/details/73648103" 
+target="_blank">* PermissionsDispatcher、RxPermissions和easypermissions的使用和对比</a></li>
+<li><a href="http://blog.csdn.net/broadview2006/article/details/73550412" 
+target="_blank">* 每周荐书：架构、Scratch、增长黑客（评论送书）</a></li>
+
+</ul></ul>
+</div>
+
+
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 -->                    <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true"  data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 200px;">
+                         <div id="nav_show_top_stop" style="width: 200px;height: 200px;z-index:1000"><div id="cpro_u2734128"></div></div>
+                   </div>
+    <script type="text/javascript">    
+        setTimeout(function () {
+            var naviga_offsetTop = 0;
+            function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+            function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+               
+        }, 200);    
+    </script>
+<script type="text/javascript">(window.cproArray = window.cproArray || []).push({ id: "u2734128" });  </script> 
+                    <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script> 
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+        <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js" type="text/javascript"></script>
+        
+    <script type="text/javascript" src="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.js?20170626001"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=5011157"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover"  style="display:none"></div>
+    <div class="pop pop_CA"  style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon"  id="fapancle"  onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+           
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            },500);
+
+        </script>
+
+</body>
+</html>   
+ 
