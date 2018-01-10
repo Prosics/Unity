@@ -1,0 +1,24 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Prosics/Scripts/Vector3Helper.cs">
+    <Files>
+      <File FileName="Assets/Test/AngleTest/HandScript.cs" Line="28" Column="59" />
+      <File FileName="Assets/PatrolPath.cs" Line="1" Column="1" />
+      <File FileName="Assets/Prosics/Editor/DecoratorEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/Test/MeshTest/DrawCube.cs" Line="1" Column="1" />
+      <File FileName="Assets/Test/MeshTest/DrawPlane.cs" Line="1" Column="1" />
+      <File FileName="../../RobotDemo_old/Assets/NGUI/Scripts/Editor/NGUITransformInspector.cs" Line="1" Column="1" />
+      <File FileName="../../../Downloads/xuanyusong-unity-decompiled-6410199d4abd/unity5.5_decompiled/UnityEditor/UnityEditor/Editor.cs" Line="1" Column="1" />
+      <File FileName="../New Unity Project 1/Assets/NGUI/Scripts/Editor/NGUIEditorTools.cs" Line="1" Column="1" />
+      <File FileName="Assets/Prosics/Editor/TransformEditEx.cs" Line="1" Column="1" />
+      <File FileName="../../../Downloads/xuanyusong-unity-decompiled-6410199d4abd/unity5.5_decompiled/UnityEditor/UnityEditor/TransformInspector.cs" Line="1" Column="1" />
+      <File FileName="Assets/Prosics/Scripts/Vector3Helper.cs" Line="69" Column="1" />
+      <File FileName="Assets/Prosics/Tools/DragableScripts.cs" Line="1" Column="1" />
+      <File FileName="Assets/Test/AngleTest/AngleTest.cs" Line="22" Column="48" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

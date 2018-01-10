@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosics", "Assembly-CSharp.csproj", "{03D28A5F-6BFE-0859-25B9-F3B215EAB4AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosics", "Assembly-CSharp-Editor.csproj", "{8215B0E2-8776-EC25-69A1-E557FD5E01CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03D28A5F-6BFE-0859-25B9-F3B215EAB4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D28A5F-6BFE-0859-25B9-F3B215EAB4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D28A5F-6BFE-0859-25B9-F3B215EAB4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D28A5F-6BFE-0859-25B9-F3B215EAB4AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8215B0E2-8776-EC25-69A1-E557FD5E01CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8215B0E2-8776-EC25-69A1-E557FD5E01CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8215B0E2-8776-EC25-69A1-E557FD5E01CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8215B0E2-8776-EC25-69A1-E557FD5E01CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
